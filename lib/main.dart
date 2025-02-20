@@ -1,5 +1,6 @@
 import 'package:app_10/bloc/counter/counter_bloc.dart';
 import 'package:app_10/ui/counter_screen.dart';
+import 'package:app_10/ui/slider_switch/slider_switch_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       create: (context) => CounterBloc(),
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: CounterScreen(),
+        home: SliderSwitchScreen(),
       ),
     );
   }

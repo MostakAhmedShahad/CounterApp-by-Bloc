@@ -25,11 +25,9 @@ class _CounterScreenState extends State<CounterScreen> {
         children: [
           BlocBuilder<CounterBloc, CounterState>(
             builder: (context, state) {
-              return Center(
-                child: Text(
-                  state.counter.toString(),
-                  style: TextStyle(fontSize: 50),
-                ),
+              return Text(
+                state.counter.toString(),
+                style: TextStyle(fontSize: 25),
               );
             },
           ),
@@ -43,7 +41,7 @@ class _CounterScreenState extends State<CounterScreen> {
                   },
                   child: Text('Increment')),
               SizedBox(
-                width: 15,
+                width: 16,
               ),
               ElevatedButton(
                   onPressed: () {
