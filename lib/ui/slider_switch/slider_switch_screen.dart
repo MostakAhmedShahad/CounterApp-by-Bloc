@@ -34,7 +34,7 @@ class _SliderSwitchScreenState extends State<SliderSwitchScreen> {
                       context.read<SwitchBloc>().add(EnableOrDisableNotification());
                     }) ;
                   }
-                )
+                ),
                 
               ],
             ),
