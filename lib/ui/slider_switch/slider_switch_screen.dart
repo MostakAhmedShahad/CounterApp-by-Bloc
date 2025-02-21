@@ -29,6 +29,7 @@ class _SliderSwitchScreenState extends State<SliderSwitchScreen> {
               children: [
                 const Text("Notification"),
                  BlocBuilder<SwitchBloc, SwitchState>(
+                  buildWhen: (previous, current) => previous.isSwitch!=current.isSwitch,
                   builder: (context, state) {
                     return Switch(value: state.isSwitch, onChanged: (newValue) {
                       context.read<SwitchBloc>().add(EnableOrDisableNotification());
