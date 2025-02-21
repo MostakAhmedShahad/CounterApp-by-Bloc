@@ -2,7 +2,6 @@ import 'package:app_10/bloc/slider_switch/switch_bloc.dart';
 import 'package:app_10/bloc/slider_switch/switch_event.dart';
 import 'package:app_10/bloc/slider_switch/switch_state.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SliderSwitchScreen extends StatefulWidget {
@@ -23,34 +22,71 @@ class _SliderSwitchScreenState extends State<SliderSwitchScreen> {
         padding: const EdgeInsets.all(18.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text("Notification"),
-                BlocBuilder<SwitchBloc, SwitchState>(
+                 BlocBuilder<SwitchBloc, SwitchState>(
                   builder: (context, state) {
                     return Switch(value: state.isSwitch, onChanged: (newValue) {
                       context.read<SwitchBloc>().add(EnableOrDisableNotification());
-                    }) ;
+                    });
                   }
                 ),
+
+                 
+               
                 
               ],
             ),
             SizedBox(height: 20,),
-            Container(
+
+            BlocBuilder<SwitchBloc, SwitchState>(
+              builder: (context, state) {
+                return Container(
               height: 200,
               width: double.infinity,
-              color: Colors.red.withOpacity(.95),
+              color: Colors.red.withOpacity(state.sliderValue),
               
               
+            ) ;
+              },
             ),
-
-            Slider(value: .4, onChanged: (value){})
+            
+            BlocBuilder<SwitchBloc, SwitchState>(
+              builder: (context, state) {
+                return  Slider(value: state.sliderValue, onChanged: (value){
+                  context.read<SwitchBloc>().add(SliderMove(sliderValue: value));
+                  
+                }) ;
+              },
+            )
+        
+           
           ],
         ),
       ),
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+//  BlocBuilder<SwitchBloc, SwitchState>(
+//                   builder: (context, state) {
+//                     return Switch(value: state.isSwitch, onChanged: (newValue) {
+//                       context.read<SwitchBloc>().add(EnableOrDisableNotification());
+//                     });
+//                   }
+//                 ),
