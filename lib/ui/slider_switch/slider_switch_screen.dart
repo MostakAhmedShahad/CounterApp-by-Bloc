@@ -16,7 +16,7 @@ class _SliderSwitchScreenState extends State<SliderSwitchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Slider example'),
+        title: Text('Slider example!'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(18.0),
@@ -45,6 +45,7 @@ class _SliderSwitchScreenState extends State<SliderSwitchScreen> {
             SizedBox(height: 20,),
 
             BlocBuilder<SwitchBloc, SwitchState>(
+              buildWhen: (previous, current) => previous.sliderValue!=current.sliderValue,
               builder: (context, state) {
                 return Container(
               height: 200,
