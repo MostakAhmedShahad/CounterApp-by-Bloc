@@ -4,6 +4,7 @@ import 'package:app_10/bloc/list_view/bloc/list_view_bloc.dart';
 import 'package:app_10/bloc/slider_switch/switch_bloc.dart';
  
 import 'package:app_10/ui/image_peaker/image_peaker_screen.dart';
+import 'package:app_10/ui/list_view/list_view.dart';
  
 import 'package:app_10/utils/image_peaker_utils.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'ui/image_peaker/image_peaker_screen.dart';
 import 'utils/image_peaker_utils.dart';
+import 'ui/list_view/list_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,7 +40,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: ListView(),
+        home: Listview(),
       ),
     );
   }

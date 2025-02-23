@@ -1,10 +1,14 @@
 part of 'list_view_bloc.dart';
 
-sealed class ListViewState extends Equatable {
-  const ListViewState();
+  class ListViewState extends Equatable {
+  final int num;
+  const ListViewState({this.num=0});
+
+  ListViewState copyWith({int? num}){
+    return ListViewState(num: num ?? this.num);
+  }
   
   @override
-  List<Object> get props => [];
+  List<Object> get props => [num!];
 }
-
-final class ListViewInitial extends ListViewState {}
+ 
