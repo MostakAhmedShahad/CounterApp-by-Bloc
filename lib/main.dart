@@ -1,5 +1,6 @@
 import 'package:app_10/bloc/counter/counter_bloc.dart';
 import 'package:app_10/bloc/image_peaker/image_peaker_bloc.dart';
+import 'package:app_10/bloc/list_view/bloc/list_view_bloc.dart';
 import 'package:app_10/bloc/slider_switch/switch_bloc.dart';
  
 import 'package:app_10/ui/image_peaker/image_peaker_screen.dart';
@@ -31,11 +32,16 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => ImagePeakerBloc(ImagePeakerUtils()),
         ),
+        BlocProvider(
+          create: (context) => ListViewBloc( ),
+        ),
       ],
-      child: const MaterialApp(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: ImagePeakerScreen(),
+        home: ListView(),
       ),
     );
   }
 }
+
+
