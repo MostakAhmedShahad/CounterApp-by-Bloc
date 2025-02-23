@@ -1,11 +1,12 @@
- 
 allprojects {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }  // (Optional) Useful for some third-party dependencies
     }
 }
 
+// Keep existing settings
 rootProject.buildDir = "../build"
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
@@ -14,6 +15,7 @@ subprojects {
     project.evaluationDependsOn(":app")
 }
 
+// Ensure clean task works properly
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
