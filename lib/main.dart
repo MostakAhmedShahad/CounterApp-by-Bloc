@@ -1,7 +1,9 @@
 import 'package:app_10/bloc/counter/counter_bloc.dart';
+import 'package:app_10/bloc/favorite_item/bloc/favorite_item_bloc.dart';
 import 'package:app_10/bloc/image_peaker/image_peaker_bloc.dart';
 import 'package:app_10/bloc/list_view/bloc/list_view_bloc.dart';
 import 'package:app_10/bloc/slider_switch/switch_bloc.dart';
+import 'package:app_10/ui/favorite_item/favorite_item_screen.dart';
  
 import 'package:app_10/ui/image_peaker/image_peaker_screen.dart';
 import 'package:app_10/ui/list_view/list_view.dart';
@@ -37,10 +39,13 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => ListViewBloc( ),
         ),
+         BlocProvider(
+          create: (context) => FavoriteItemBloc( ),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: Listview(),
+        home: FavoriteItemScreen(),
       ),
     );
   }
