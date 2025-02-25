@@ -1,10 +1,19 @@
-part of 'favorite_item_bloc.dart';
+ 
+import 'package:equatable/equatable.dart';
 
-sealed class FavoriteItemState extends Equatable {
-  const FavoriteItemState();
+  class FavoriteItemState extends Equatable {
+
+  final List<String> name;
+  const FavoriteItemState({this.name=const []});
+
+  FavoriteItemState copyWith({List<String>? name}){
+    return FavoriteItemState(name : name?? this.name);
+  }
+
+
   
   @override
-  List<Object> get props => [];
+  List<Object> get props => [name];
 }
 
-final class FavoriteItemInitial extends FavoriteItemState {}
+ 

@@ -1,4 +1,7 @@
+import 'package:app_10/bloc/favorite_item/bloc/favorite_item_bloc.dart';
+import 'package:app_10/bloc/favorite_item/bloc/favorite_item_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FavoriteItemScreen extends StatefulWidget {
   const FavoriteItemScreen({super.key});
@@ -26,13 +29,13 @@ class _FavoriteItemScreenState extends State<FavoriteItemScreen> {
 
   List<String> tempArray = [];
 
-  void _addItem() {
-    setState(() {
-      name.add("Item ${name.length + 1}"); // Adding a new item
-    });
-  }
+  // void _addItem() {
+  //   setState(() {
+  //     name.add("Item ${name.length + 1}"); // Adding a new item
+  //   });
+  // }
 
-   _removeItem(int index) {
+  _removeItem(int index) {
     setState(() {
       name.removeAt(index); // Removing the item at the given index
     });
@@ -53,7 +56,12 @@ class _FavoriteItemScreenState extends State<FavoriteItemScreen> {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.pop(context); // Close the dialog without saving
+                if (textController.text.isNotEmpty) {
+                  context
+                      .read<FavoriteItemBloc>()
+                      .add(Add_item(textController.text)); // Add item
+                }
+                Navigator.pop(context);
               },
               child: const Text("Cancel"),
             ),
@@ -71,7 +79,8 @@ class _FavoriteItemScreenState extends State<FavoriteItemScreen> {
           ],
         );
       },
-    );}
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,46 +91,50 @@ class _FavoriteItemScreenState extends State<FavoriteItemScreen> {
           style: TextStyle(fontSize: 30),
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(
-              child: ListView.builder(
-                  itemCount: name.length,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      child: Card(
-                        child: ListTile(
-                          title: Text(name[index].toString(),
-                              style: const TextStyle(fontSize: 20)),
-                          trailing: SizedBox(
-                            height: 50,
-                            width: 100,
-                            child: IconButton(onPressed: 
-                          ()=>  _removeItem(  index),
-                             icon: Icon(Icons.delete))
+      body: BlocBuilder<FavoriteItemBloc, FavoriteItemState>(
+        builder: (context, state) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                      itemCount: name.length,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          child: Card(
+                            child: ListTile(
+                              title: Text(name[index].toString(),
+                                  style: const TextStyle(fontSize: 20)),
+                              trailing: SizedBox(
+                                  height: 50,
+                                  width: 100,
+                                  child: IconButton(
+                                      onPressed: () =>_removeItem
+
+                                        // setState(() {
+                                        //   context.read<FavoriteItemBloc>().add(Delete_item(index));
+                                          
+                                        // });
+                                        ,
+                                      icon: Icon(Icons.delete))),
+                            ),
                           ),
-                        ),
-                      ),
-                      onTap: () {},
-                    );
-                  }),
-            )
-          ],
-        ),
+                          onTap: () {},
+                        );
+                      }),
+                )
+              ],
+            ),
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
-           
-           onPressed: _showAddItemDialog,
+        onPressed: _showAddItemDialog,
         child: const Icon(Icons.add),
-        
-        
-      
       ),
     );
   }
-   
 }
 
 
