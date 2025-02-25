@@ -1,19 +1,15 @@
- 
 import 'package:equatable/equatable.dart';
 
-  class FavoriteItemState extends Equatable {
-
+class FavoriteItemState extends Equatable {
   final List<String> name;
-  const FavoriteItemState({this.name=const []});
+  final List<String> deletedItem;
+  const FavoriteItemState({this.deletedItem = const [], this.name = const []});
 
-  FavoriteItemState copyWith({List<String>? name}){
-    return FavoriteItemState(name : name?? this.name);
+  FavoriteItemState copyWith({List<String>? name, List<String>? deletedItem}) {
+    return FavoriteItemState(
+        name: name ?? this.name, deletedItem: deletedItem ?? this.deletedItem);
   }
 
-
-  
   @override
-  List<Object> get props => [name];
+  List<Object> get props => [name, deletedItem];
 }
-
- 

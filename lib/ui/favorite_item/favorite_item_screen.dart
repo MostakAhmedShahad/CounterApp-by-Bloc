@@ -27,7 +27,7 @@ class _FavoriteItemScreenState extends State<FavoriteItemScreen> {
     'December'
   ];
 
-  List<String> tempArray = [];
+  List<String> deletedItem = [];
 
   // void _addItem() {
   //   setState(() {
@@ -41,7 +41,7 @@ class _FavoriteItemScreenState extends State<FavoriteItemScreen> {
   //   });
   // }
 
-   void _showAddItemDialog() {
+  void _showAddItemDialog() {
     TextEditingController textController = TextEditingController();
 
     showDialog(
@@ -61,7 +61,9 @@ class _FavoriteItemScreenState extends State<FavoriteItemScreen> {
             TextButton(
               onPressed: () {
                 if (textController.text.isNotEmpty) {
-                  context.read<FavoriteItemBloc>().add(Add_item(textController.text));
+                  context
+                      .read<FavoriteItemBloc>()
+                      .add(Add_item(textController.text));
                 }
                 Navigator.pop(context);
               },
@@ -96,10 +98,15 @@ class _FavoriteItemScreenState extends State<FavoriteItemScreen> {
                   itemBuilder: (context, index) {
                     return Card(
                       child: ListTile(
-                        title: Text(state.name[index], style: const TextStyle(fontSize: 20)),
+                        title: Text(state.name[index],
+                            style: const TextStyle(fontSize: 20)),
                         trailing: IconButton(
                           onPressed: () {
-                            context.read<FavoriteItemBloc>().add(Delete_item(index));
+                            //deletedItems.add(allItems[index]);
+                           context.read<FavoriteItemBloc>().add(MoveItem(index, state.deletedItem.length));
+                            // context
+                            //     .read<FavoriteItemBloc>()
+                            //     .add(Delete_item(index));
                           },
                           icon: const Icon(Icons.delete, color: Colors.red),
                         ),
@@ -109,13 +116,52 @@ class _FavoriteItemScreenState extends State<FavoriteItemScreen> {
                 );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _showAddItemDialog,
-        child: const Icon(Icons.add),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(25.0),
+            child: FloatingActionButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DeletedItemsScreen(),
+                  ),
+                );
+              },
+              child: const Icon(Icons.delete),
+            ),
+          ),
+          FloatingActionButton(
+            onPressed: _showAddItemDialog,
+            child: const Icon(Icons.add),
+          ),
+        ],
       ),
     );
   }
 }
 
-
- 
+class DeletedItemsScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Deleted Items")),
+      body: BlocBuilder<FavoriteItemBloc, FavoriteItemState>(
+        builder: (context, state) {
+          return state.deletedItem.isEmpty
+              ? Center(child: Text("No deleted items"))
+              : ListView.builder(
+                  itemCount: state.deletedItem.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(state.deletedItem[index]),
+                    );
+                  },
+                );
+        },
+      ),
+    );
+  }
+}

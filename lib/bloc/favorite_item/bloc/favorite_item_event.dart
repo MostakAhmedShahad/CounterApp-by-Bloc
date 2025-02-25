@@ -23,7 +23,23 @@ class Delete_item extends FavoriteItemEvent{
 
   @override
   List<Object> get props => [index];
+}
+
+
+class MoveItem extends FavoriteItemEvent{
+
+   //final List<String> deletedItem;
+   final int index;
+   final int newIndex;
+
+
+   const  MoveItem(this.newIndex,this.index);
+
+  @override
+  List<Object> get props => [index,newIndex];
 
 
 }
+
+
 
