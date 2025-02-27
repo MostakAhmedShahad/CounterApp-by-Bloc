@@ -3,10 +3,12 @@ import 'package:app_10/bloc/favorite_item/bloc/favorite_item_bloc.dart';
 import 'package:app_10/bloc/image_peaker/image_peaker_bloc.dart';
 import 'package:app_10/bloc/list_view/bloc/list_view_bloc.dart';
 import 'package:app_10/bloc/slider_switch/switch_bloc.dart';
+import 'package:app_10/bloc/timer/bloc/timer_bloc.dart';
 import 'package:app_10/ui/favorite_item/favorite_item_screen.dart';
  
 import 'package:app_10/ui/image_peaker/image_peaker_screen.dart';
 import 'package:app_10/ui/list_view/list_view.dart';
+import 'package:app_10/ui/timer/timer_screen.dart';
  
 import 'package:app_10/utils/image_peaker_utils.dart';
 import 'package:flutter/material.dart';
@@ -42,10 +44,13 @@ class MyApp extends StatelessWidget {
          BlocProvider(
           create: (context) => FavoriteItemBloc( ),
         ),
+         BlocProvider(
+          create: (context) => TimerBloc( ),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: FavoriteItemScreen(),
+        home:  TimerScreen(),
       ),
     );
   }
