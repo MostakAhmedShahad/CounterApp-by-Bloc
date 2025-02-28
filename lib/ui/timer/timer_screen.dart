@@ -33,7 +33,9 @@ class _TimerScreenState extends State<TimerScreen> {
               children: [
                 Text(displayTime, style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
 
-                Expanded(
+                SizedBox(
+                  height: 400,
+                  width: double.infinity,
                   child: ListView.builder(
                     itemCount: laps.length,
                     itemBuilder: (context, index) {
@@ -44,29 +46,32 @@ class _TimerScreenState extends State<TimerScreen> {
                   ),
                 ),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () => context.read<TimerBloc>().add(StartTimer()),
-                      child: const Text("Start"),
-                    ),
-                    const SizedBox(width: 10),
-                    ElevatedButton(
-                      onPressed: () => context.read<TimerBloc>().add(StopTimer()),
-                      child: const Text("Stop"),
-                    ),
-                    const SizedBox(width: 10),
-                    ElevatedButton(
-                      onPressed: () => context.read<TimerBloc>().add(ResetTimer()),
-                      child: const Text("Reset"),
-                    ),
-                    const SizedBox(width: 10),
-                    ElevatedButton(
-                      onPressed: () => context.read<TimerBloc>().add(AddLap()),
-                      child: const Text("Lap"),
-                    ),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(15, 10, 15, 50),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () => context.read<TimerBloc>().add(StartTimer()),
+                        child: const Text("Start"),
+                      ),
+                      const SizedBox(width: 10),
+                      ElevatedButton(
+                        onPressed: () => context.read<TimerBloc>().add(StopTimer()),
+                        child: const Text("Stop"),
+                      ),
+                      const SizedBox(width: 10),
+                      ElevatedButton(
+                        onPressed: () => context.read<TimerBloc>().add(ResetTimer()),
+                        child: const Text("Reset"),
+                      ),
+                      const SizedBox(width: 10),
+                      ElevatedButton(
+                        onPressed: () => context.read<TimerBloc>().add(AddLap()),
+                        child: const Text("Lap"),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             );
