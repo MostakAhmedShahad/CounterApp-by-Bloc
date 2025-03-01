@@ -1,10 +1,30 @@
-part of 'post_api_bloc.dart';
+import 'package:app_10/ui/api/post_api/ui/json_to_dart.dart';
+import 'package:equatable/equatable.dart';
+ 
 
-sealed class PostApiState extends Equatable {
-  const PostApiState();
-  
+abstract class PostApiState extends Equatable {
   @override
   List<Object> get props => [];
 }
 
-final class PostApiInitial extends PostApiState {}
+class PostApiInitial extends PostApiState {}
+
+class PostApiLoading extends PostApiState {}
+
+class PostApiLoaded extends PostApiState {
+  final List<PostApi> posts;
+  
+  PostApiLoaded(this.posts);
+
+  @override
+  List<Object> get props => [posts];
+}
+
+class PostApiError extends PostApiState {
+  final String message;
+  
+  PostApiError(this.message);
+
+  @override
+  List<Object> get props => [message];
+}

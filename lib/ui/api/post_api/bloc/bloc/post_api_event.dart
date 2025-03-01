@@ -1,8 +1,8 @@
-part of 'post_api_bloc.dart';
+import 'package:equatable/equatable.dart';
 
-sealed class PostApiEvent extends Equatable {
-  const PostApiEvent();
-
+abstract class PostApiEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class FetchPosts extends PostApiEvent {}
