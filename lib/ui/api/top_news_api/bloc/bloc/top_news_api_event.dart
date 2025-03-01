@@ -1,8 +1,8 @@
-part of 'top_news_api_bloc.dart';
+ import 'package:equatable/equatable.dart';
 
-sealed class TopNewsApiEvent extends Equatable {
-  const TopNewsApiEvent();
-
+abstract class TopNewsApiEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class FetchTopNews extends TopNewsApiEvent {}
