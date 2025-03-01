@@ -4,8 +4,12 @@ import 'package:app_10/bloc/image_peaker/image_peaker_bloc.dart';
 import 'package:app_10/bloc/list_view/bloc/list_view_bloc.dart';
 import 'package:app_10/bloc/slider_switch/switch_bloc.dart';
 import 'package:app_10/bloc/timer/bloc/timer_bloc.dart';
+import 'package:app_10/ui/api/photos_api/bloc/bloc/photos_api_bloc.dart';
+import 'package:app_10/ui/api/photos_api/ui/photos_api_screen.dart';
 import 'package:app_10/ui/api/post_api/bloc/bloc/post_api_bloc.dart';
 import 'package:app_10/ui/api/post_api/ui/post_api_screen.dart';
+import 'package:app_10/ui/api/top_news_api/bloc/bloc/top_news_api_bloc.dart';
+import 'package:app_10/ui/api/top_news_api/ui/top_news_api_screen.dart';
 import 'package:app_10/ui/favorite_item/favorite_item_screen.dart';
  
 import 'package:app_10/ui/image_peaker/image_peaker_screen.dart';
@@ -52,10 +56,16 @@ class MyApp extends StatelessWidget {
          BlocProvider(
           create: (context) => PostApiBloc( ),
         ),
+         BlocProvider(
+          create: (context) => PhotosApiBloc( ),
+        ),
+         BlocProvider(
+          create: (context) => TopNewsApiBloc( ),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home:  PostApiScreen(),
+        home:  TopNewsApiScreen(),
       ),
     );
   }
