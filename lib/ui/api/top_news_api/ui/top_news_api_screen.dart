@@ -11,7 +11,7 @@ class TopNewsApiScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Top News" style: TextStyle(fontSize: 20),)),
+      appBar: AppBar(title: const Text("Top News" ,style: TextStyle(fontSize: 20),)),
       body: BlocProvider(
         create: (context) => TopNewsApiBloc()..add(FetchTopNews()),
         child: BlocBuilder<TopNewsApiBloc, TopNewsApiState>(
