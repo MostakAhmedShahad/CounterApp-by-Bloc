@@ -12,20 +12,20 @@ class FavoriteItemScreen extends StatefulWidget {
 
 class _FavoriteItemScreenState extends State<FavoriteItemScreen> {
   int num = 0;
-  // List<String> name = [
-  //   'January',
-  //   'February',
-  //   'March',
-  //   'April',
-  //   'May',
-  //   'June',
-  //   'July',
-  //   'August',
-  //   'September',
-  //   'October',
-  //   'November',
-  //   'December'
-  // ];
+  List<String> name = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ];
 
   List<String> deletedItem = [];
 
@@ -74,7 +74,11 @@ class _FavoriteItemScreenState extends State<FavoriteItemScreen> {
         ),
       ),
       body: BlocBuilder<FavoriteItemBloc, FavoriteItemState>(
+        buildWhen: (previous, current)   {return previous.name != current.name;},
         builder: (context, state) {
+          
+          print(state.name);
+          print('Inside builder');
           return state.name.isEmpty
               ? const Center(
                   child: Text(

@@ -11,5 +11,5 @@ class FavoriteItemState extends Equatable {
   }
 
   @override
-  List<Object> get props => [name, deletedItem];
+  List<Object> get props => [List.from(name), List.from(deletedItem)];
 }
