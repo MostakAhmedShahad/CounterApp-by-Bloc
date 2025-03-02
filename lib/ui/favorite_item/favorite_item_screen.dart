@@ -29,7 +29,7 @@ class _FavoriteItemScreenState extends State<FavoriteItemScreen> {
 
   List<String> deletedItem = [];
 
-  void _showAddItemDialog() {
+    _showAddItemDialog() {
     TextEditingController textController = TextEditingController();
 
     showDialog(
@@ -40,7 +40,6 @@ class _FavoriteItemScreenState extends State<FavoriteItemScreen> {
           content: TextField(
             controller: textController,
             decoration: const InputDecoration(hintText: "Type here..."),
-            
           ),
           actions: [
             TextButton(
@@ -68,18 +67,17 @@ class _FavoriteItemScreenState extends State<FavoriteItemScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       appBar: AppBar(
         title: const Text(
           "ListView With Select",
           style: TextStyle(fontSize: 30),
         ),
       ),
-      
       body: BlocBuilder<FavoriteItemBloc, FavoriteItemState>(
-        buildWhen: (previous, current)   {return previous.name != current.name;},
+        buildWhen: (previous, current) {
+          return previous.name != current.name;
+        },
         builder: (context, state) {
-          
           print(state.name);
           print('Inside builder');
           return state.name.isEmpty
@@ -93,9 +91,7 @@ class _FavoriteItemScreenState extends State<FavoriteItemScreen> {
                   itemCount: state.name.length,
                   itemBuilder: (context, index) {
                     return Card(
-                      
                       child: ListTile(
-                        
                         title: Text(state.name[index],
                             style: const TextStyle(fontSize: 20)),
                         trailing: IconButton(
