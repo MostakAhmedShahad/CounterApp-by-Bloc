@@ -1,3 +1,7 @@
+import 'package:app_10/home_screen.dart';
+import 'package:app_10/ui/counter_screen.dart';
+import 'package:app_10/ui/slider_switch/slider_switch_screen.dart';
+import 'package:app_10/utils/image_peaker_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,11 +19,11 @@ import '../ui/api/top_news_api/bloc/bloc/top_news_api_bloc.dart';
 import '../ui/api/top_news_api/ui/top_news_api_screen.dart';
 import '../ui/favorite_item/favorite_item_screen.dart';
 import '../ui/image_peaker/image_peaker_screen.dart';
-import '../ui/list_view/list_view.dart';
+ 
 import '../ui/timer/timer_screen.dart';
-import '../ui/counter/counter_screen.dart';
-import '../ui/switch/switch_screen.dart';
-import '../ui/home_screen.dart';
+ 
+ 
+ 
 
 final GoRouter router = GoRouter(
   routes: [
@@ -66,13 +70,13 @@ final GoRouter router = GoRouter(
       path: '/list-view',
       builder: (context, state) => BlocProvider(
         create: (context) => ListViewBloc(),
-        child: const ListViewScreen(),
+        child:   ListView(),
       ),
     ),
     GoRoute(
       path: '/image-picker',
       builder: (context, state) => BlocProvider(
-        create: (context) => ImagePeakerBloc(),
+        create: (context) => ImagePeakerBloc(ImagePeakerUtils()),
         child: const ImagePeakerScreen(),
       ),
     ),
@@ -87,7 +91,7 @@ final GoRouter router = GoRouter(
       path: '/switch',
       builder: (context, state) => BlocProvider(
         create: (context) => SwitchBloc(),
-        child: const SwitchScreen(),
+        child: const SliderSwitchScreen(),
       ),
     ),
   ],

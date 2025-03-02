@@ -1,5 +1,6 @@
 
 import 'package:app_10/bloc/counter/counter_bloc.dart';
+import 'package:app_10/bloc/favorite_item/bloc/favorite_item_bloc.dart';
 import 'package:app_10/bloc/image_peaker/image_peaker_bloc.dart';
 import 'package:app_10/bloc/list_view/bloc/list_view_bloc.dart';
 import 'package:app_10/bloc/slider_switch/switch_bloc.dart';
@@ -7,6 +8,7 @@ import 'package:app_10/bloc/timer/bloc/timer_bloc.dart';
 import 'package:app_10/ui/api/photos_api/bloc/bloc/photos_api_bloc.dart';
 import 'package:app_10/ui/api/post_api/bloc/bloc/post_api_bloc.dart';
 import 'package:app_10/ui/api/top_news_api/bloc/bloc/top_news_api_bloc.dart';
+import 'package:app_10/utils/image_peaker_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'app_router.dart';
@@ -24,7 +26,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => SwitchBloc()),
         BlocProvider(create: (context) => CounterBloc()),
-        BlocProvider(create: (context) => ImagePeakerBloc()),
+        BlocProvider(create: (context) => ImagePeakerBloc(ImagePeakerUtils())),
         BlocProvider(create: (context) => ListViewBloc()),
         BlocProvider(create: (context) => FavoriteItemBloc()),
         BlocProvider(create: (context) => TimerBloc()),
