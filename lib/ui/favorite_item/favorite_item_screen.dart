@@ -12,34 +12,22 @@ class FavoriteItemScreen extends StatefulWidget {
 
 class _FavoriteItemScreenState extends State<FavoriteItemScreen> {
   int num = 0;
-  List<String> name = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-  ];
+  // List<String> name = [
+  //   'January',
+  //   'February',
+  //   'March',
+  //   'April',
+  //   'May',
+  //   'June',
+  //   'July',
+  //   'August',
+  //   'September',
+  //   'October',
+  //   'November',
+  //   'December'
+  // ];
 
   List<String> deletedItem = [];
-
-  // void _addItem() {
-  //   setState(() {
-  //     name.add("Item ${name.length + 1}"); // Adding a new item
-  //   });
-  // }
-
-  // _removeItem(int index) {
-  //   setState(() {
-  //     name.removeAt(index); // Removing the item at the given index
-  //   });
-  // }
 
   void _showAddItemDialog() {
     TextEditingController textController = TextEditingController();
@@ -60,10 +48,11 @@ class _FavoriteItemScreenState extends State<FavoriteItemScreen> {
             ),
             TextButton(
               onPressed: () {
-                if (textController.text.isNotEmpty) {
+                if (textController.text.trim().isNotEmpty) {
+                  // Ensure non-empty input
                   context
                       .read<FavoriteItemBloc>()
-                      .add(Add_item(textController.text));
+                      .add(Add_item(textController.text.trim()));
                 }
                 Navigator.pop(context);
               },
@@ -102,11 +91,9 @@ class _FavoriteItemScreenState extends State<FavoriteItemScreen> {
                             style: const TextStyle(fontSize: 20)),
                         trailing: IconButton(
                           onPressed: () {
-                            //deletedItems.add(allItems[index]);
-                           context.read<FavoriteItemBloc>().add(MoveItem(index, state.deletedItem.length));
-                            // context
-                            //     .read<FavoriteItemBloc>()
-                            //     .add(Delete_item(index));
+                            context
+                                .read<FavoriteItemBloc>()
+                                .add(MoveItem(state.deletedItem.length, index));
                           },
                           icon: const Icon(Icons.delete, color: Colors.red),
                         ),

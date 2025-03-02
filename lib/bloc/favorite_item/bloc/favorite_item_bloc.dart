@@ -7,31 +7,33 @@ part 'favorite_item_event.dart';
 class FavoriteItemBloc extends Bloc<FavoriteItemEvent, FavoriteItemState> {
   FavoriteItemBloc() : super(FavoriteItemState()) {
     on<Add_item>(add_item);
-    on<Delete_item>(delete_item);
+    //on<Delete_item>(delete_item);
     on<MoveItem>(moveItem);
   }
 
   void add_item(Add_item event, Emitter<FavoriteItemState> emit) {
-    final updatedList = List<String>.from(state.name)..add(event.NewItem);
-    emit(state.copyWith(name: updatedList));
-  }
+  if (event.NewItem.isEmpty) return; // Prevent empty items
 
-  void delete_item(Delete_item event, Emitter<FavoriteItemState> emit) {
-    final updatedList = List<String>.from(state.name)..removeAt(event.index);
-    emit(state.copyWith(name: updatedList));
-  }
+  final updatedList = List<String>.from(state.name)..add(event.NewItem);
+  emit(state.copyWith(name: updatedList));
+}
+
+
+  // void delete_item(Delete_item event, Emitter<FavoriteItemState> emit) {
+  //   final updatedList = List<String>.from(state.name)..removeAt(event.index);
+  //   emit(state.copyWith(name: updatedList));
+  // }
 
   void moveItem(MoveItem event, Emitter<FavoriteItemState> emit) {
-    final updatedNameList = List<String>.from(state.name);
-    final updatedDeletedList = List<String>.from(state.deletedItem);
+  final updatedNameList = List<String>.from(state.name);
+  final updatedDeletedList = List<String>.from(state.deletedItem);
 
-    if (event.index >= 0 && event.index < updatedNameList.length) {
-      final item =
-          updatedNameList.removeAt(event.index); // Remove from main list
-      updatedDeletedList.add(item); // Add to deleted list
-    }
-
-    emit(
-        state.copyWith(name: updatedNameList, deletedItem: updatedDeletedList));
+  if (event.index >= 0 && event.index < updatedNameList.length) {
+    final item = updatedNameList.removeAt(event.index); // Remove from name list
+    updatedDeletedList.add(item); // Add to deleted list
   }
+
+  emit(state.copyWith(name: updatedNameList, deletedItem: updatedDeletedList));
+}
+
 }
