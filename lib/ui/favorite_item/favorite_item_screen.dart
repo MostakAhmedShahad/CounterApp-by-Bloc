@@ -42,7 +42,7 @@ class FavoriteItemScreen extends StatelessWidget {
             onPressed: () => Navigator.push(
               context, MaterialPageRoute(builder: (context) => DeletedItemsScreen()),
             ),
-            child: Text('View Deleted Items'),
+            child: Text('View Deleted Items',style: TextStyle(fontSize: 12,color: Colors.amber),),
           )
         ],
       ),
