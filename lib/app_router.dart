@@ -63,7 +63,7 @@ final GoRouter router = GoRouter(
       path: '/favorites',
       builder: (context, state) => BlocProvider(
         create: (context) => FavoriteItemBloc(),
-        child: const FavoriteItemScreen(),
+        child:   FavoriteItemScreen(),
       ),
     ),
     GoRoute(
