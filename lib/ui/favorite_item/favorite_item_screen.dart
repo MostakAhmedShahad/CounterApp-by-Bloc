@@ -40,6 +40,7 @@ class _FavoriteItemScreenState extends State<FavoriteItemScreen> {
           content: TextField(
             controller: textController,
             decoration: const InputDecoration(hintText: "Type here..."),
+            
           ),
           actions: [
             TextButton(
@@ -67,12 +68,14 @@ class _FavoriteItemScreenState extends State<FavoriteItemScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       appBar: AppBar(
         title: const Text(
           "ListView With Select",
           style: TextStyle(fontSize: 30),
         ),
       ),
+      
       body: BlocBuilder<FavoriteItemBloc, FavoriteItemState>(
         buildWhen: (previous, current)   {return previous.name != current.name;},
         builder: (context, state) {
@@ -90,7 +93,9 @@ class _FavoriteItemScreenState extends State<FavoriteItemScreen> {
                   itemCount: state.name.length,
                   itemBuilder: (context, index) {
                     return Card(
+                      
                       child: ListTile(
+                        
                         title: Text(state.name[index],
                             style: const TextStyle(fontSize: 20)),
                         trailing: IconButton(

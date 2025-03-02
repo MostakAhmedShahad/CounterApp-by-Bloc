@@ -15,7 +15,7 @@ class FavoriteItemBloc extends Bloc<FavoriteItemEvent, FavoriteItemState> {
     print('inside ADD_ITEM');
     
 
-  //if (event.NewItem.isEmpty) return; // Prevent empty items
+  if (event.NewItem.isEmpty) return; // Prevent empty items
 
   final updatedList = List<String>.from(state.name)..add(event.NewItem);
   emit(state.copyWith(name: updatedList));
